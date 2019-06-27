@@ -1,0 +1,36 @@
+{
+  "vendor": "vtex",
+  "name": "zendesk-chat",
+  "version": "1.0.0",
+  "title": "Zendesk Chat",
+  "description": "Zendesk Chat",
+  "builders": {
+    "pixel": "0.x"
+  },
+  "mustUpdateAt": "2019-10-01",
+  "billingOptions": {
+    "termsURL": "",
+    "support": {
+      "url": "https://support.vtex.com/hc/requests"
+    },
+    "free": true
+  },
+  "dependencies": {
+    "vtex.pixel-interfaces": "1.x"
+  },
+  "settingsSchema": {
+    "title": "Zendesk Chat",
+    "type": "object",
+    "properties": {
+      "accountKey": {
+        "title": "Account Key",
+        "description": "Enter your Account Key",
+        "type": "string"
+      }
+    }
+  },
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
