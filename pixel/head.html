@@ -2,9 +2,19 @@
 <script>
   window.addEventListener('load', function() {
     var urlPath = document.URL
-    var titlePathPreffix = '{{ settings.titlePreffix }}'
+    var titlePathPreffix = window.decodeURIComponent('{{ settings.titlePreffix }}')
     var titlePath = titlePathPreffix + document.querySelector('head > title').innerText
     var curLocale = document.querySelector('html').lang
+
+    function path(pathArray = [], obj) {
+      var result
+      for (var i = 0; i < pathArray.length; i++) {
+        if (!obj[pathArray[i]]) {
+          return result
+        }
+      }
+      return obj[pathArray[pathArray.length]]
+    }
     
     zE(function () {
       $zopim(function() {
@@ -15,13 +25,21 @@
         })
       })
 
-      zE.identify({
-        name: '',
-        email: ''
-      })
+      if (window.__RENDER_8_SESSION__ && window.__RENDER_8_SESSION__.sessionPromise) {
+        window.__RENDER_8_SESSION__.sessionPromise.then(function (session) {
+          var userEmail = path(['response', 'namespaces', 'authentication', 'storeUserEmail', 'value'], session)
+          if (userEmail) {
+            zE.identify({
+              name: '',
+              email: userEmail
+            })
+          }
+        })
+
+      }
     })
 
-    var analytics = '{{ settings.analytics }}' === 'true'
+    var analytics = window.decodeURIComponent('{{ settings.analytics }}') === 'true'
     var webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
     var helpCenterSuppress =  webWidget.helpCenter.suppress
     var departments = webWidget.chat.departments
