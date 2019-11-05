@@ -23,10 +23,73 @@
     "title": "Zendesk Chat",
     "type": "object",
     "properties": {
+      "titlePreffix": {
+        "title": "Title preffix",
+        "description": "Preffix to add to the title of the widget",
+        "type": "string"
+      },
       "accountKey": {
         "title": "Account Key",
         "description": "Enter your Account Key",
         "type": "string"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Specifies whethe to enable or disable Google Analytics tracking",
+        "type": "boolean"
+      },
+      "webWidget": {
+        "title": "Web Widget",
+        "description": "",
+        "type": "object",
+        "properties": {
+          "helpCenter": {
+            "title": "Help Center",
+            "description": "",
+            "type": "object",
+            "properties": {
+              "suppress": {
+                "title": "Suppress Help Center",
+                "description": "",
+                "type": "boolean"
+              }
+            }
+          },
+          "chat": {
+            "title": "Chat",
+            "description": "",
+            "type": "object",
+            "properties": {
+              "departments": {
+                "title": "Departments",
+                "type": "object",
+                "properties": {
+                  "tags": {
+                    "title": "Tags",
+                    "description": "",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "enabled": {
+                    "title": "Enabled",
+                    "description": "Displays the specified departments in the pre-chat form",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "selected": {
+                    "title": "Select",
+                    "description": "Sets the visitor’s default department for the current session",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

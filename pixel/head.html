@@ -1,3 +1,47 @@
-<!-- Start of  Zendesk Widget script -->
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.accountKey}}"></script>
-<!-- End of  Zendesk Widget script -->
+<script>
+  window.addEventListener('load', function() {
+    var urlPath = document.URL
+    var titlePathPreffix = '{{ settings.titlePreffix }}'
+    var titlePath = titlePathPreffix + document.querySelector('head > title').innerText
+    var curLocale = document.querySelector('html').lang
+    
+    zE(function () {
+      $zopim(function() {
+        zE('webWidget', 'setLocale', curLocale)
+        $zopim.livechat.sendVisitorPath({
+          url: urlPath,
+          title: titlePath
+        })
+      })
+
+      zE.identify({
+        name: '',
+        email: ''
+      })
+    })
+
+    var analytics = '{{ settings.analytics }}' === 'true'
+    var webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
+    var helpCenterSuppress =  webWidget.helpCenter.suppress
+    var departments = webWidget.chat.departments
+    var enabled = departments.enabled
+    var select = departments.select
+    var tags = departments.tags 
+    window.zESettings = {
+      analytics: analytics,
+      webWidget: {
+        helpCenter: {
+          suppress: helpCenterSuppress
+        },
+        chat: {
+          departments: {
+            enabled: enabled,
+            select: select,
+            tags: tags
+          }
+        }
+      }
+    }
+})
+</script>
