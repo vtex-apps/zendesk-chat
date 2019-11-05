@@ -46,12 +46,16 @@
     var webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
     var helpCenterSuppress =  webWidget.helpCenter.suppress
     var departments = webWidget.chat.departments
+    var color = webWidget.color
     var enabled = parseValuesToInt(departments.enabled)
     var select = isNaN(parseInt(departments.select)) ? departments.select : parseInt(departments.select)
     var tags = departments.tags
     window.zESettings = {
       analytics: analytics,
       webWidget: {
+        color: {
+          theme: color.theme
+        },
         helpCenter: {
           suppress: helpCenterSuppress
         },

@@ -43,6 +43,17 @@
         "description": "",
         "type": "object",
         "properties": {
+          "color": {
+            "title": "Color",
+            "type": "object",
+            "properties": {
+              "theme": {
+                "title": "Theme color",
+                "description": "This prop may be used as a base, determining the overral color scheme of the widget",
+                "type": "string"
+              }
+            }
+          },
           "helpCenter": {
             "title": "Help Center",
             "description": "",
