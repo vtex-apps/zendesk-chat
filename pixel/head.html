@@ -3,7 +3,8 @@
   window.addEventListener('load', function() {
     var urlPath = document.URL
     var titlePathPreffix = window.decodeURIComponent('{{ settings.titlePreffix }}')
-    var titlePath = titlePathPreffix + document.querySelector('head > title').innerText
+    var titleEl = document.querySelector('head > title')
+    var titlePath = titlePathPreffix + (titleEl ? titleEl.innerText : '')
     var curLocale = document.querySelector('html').lang
     
     function parseValuesToInt(arr = []) {
