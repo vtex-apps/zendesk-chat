@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "zendesk-chat",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "title": "Zendesk Chat",
   "description": "Zendesk Chat",
   "builders": {
