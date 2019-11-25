@@ -91,7 +91,7 @@
                       "type": "string"
                     }
                   },
-                  "selected": {
+                  "select": {
                     "title": "Select",
                     "description": "Sets the visitor’s default department for the current session",
                     "type": "string"
