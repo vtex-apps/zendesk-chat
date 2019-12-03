@@ -6,7 +6,7 @@
     var titleEl = document.querySelector('head > title')
     var titlePath = titlePathPreffix + (titleEl ? titleEl.innerText : '')
     var curLocale = document.querySelector('html').lang
-    
+
     function parseValuesToInt(arr = []) {
       return arr.map(function(value) {
         var intValue = parseInt(value)
@@ -16,7 +16,7 @@
         return value
       })
     }
-    
+
     zE(function () {
       $zopim(function() {
         zE('webWidget', 'setLocale', curLocale)
@@ -44,7 +44,26 @@
     })
 
     var analytics = window.decodeURIComponent('{{ settings.analytics }}') === 'true'
-    var webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
+    var webWidget = {
+      chat: {
+        departments: {
+          enabled: [],
+          tags: [],
+          select: ''
+        },
+      },
+      helpCenter: {
+        suppress: false
+      },
+      color: {
+        theme: '',
+      }
+    }
+
+    try {
+      webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
+    } catch(e) {}
+
     var helpCenterSuppress =  webWidget.helpCenter.suppress
     var departments = webWidget.chat.departments
     var color = webWidget.color
