@@ -44,25 +44,14 @@
     })
 
     var analytics = window.decodeURIComponent('{{ settings.analytics }}') === 'true'
-    var webWidget = {
-      chat: {
-        departments: {
-          enabled: [],
-          tags: [],
-          select: ''
-        },
-      },
-      helpCenter: {
-        suppress: false
-      },
-      color: {
-        theme: '',
-      }
-    }
+    window.zESettings = window.zESettings || {}
+    window.zESettings.analytics = analytics
 
     try {
       webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
-    } catch(e) {}
+    } catch(e) {
+      return
+    }
 
     var helpCenterSuppress =  webWidget.helpCenter.suppress
     var departments = webWidget.chat.departments
@@ -70,21 +59,18 @@
     var enabled = parseValuesToInt(departments.enabled)
     var select = isNaN(parseInt(departments.select)) ? departments.select : parseInt(departments.select)
     var tags = departments.tags
-    window.zESettings = {
-      analytics: analytics,
-      webWidget: {
-        color: {
-          theme: color.theme
-        },
-        helpCenter: {
-          suppress: helpCenterSuppress
-        },
-        chat: {
-          departments: {
-            enabled: enabled,
-            select: select,
-            tags: tags
-          }
+    window.zESettings.webWidget = {
+      color: {
+        theme: color.theme
+      },
+      helpCenter: {
+        suppress: helpCenterSuppress
+      },
+      chat: {
+        departments: {
+          enabled: enabled,
+          select: select,
+          tags: tags
         }
       }
     }
