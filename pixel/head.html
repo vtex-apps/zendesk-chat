@@ -1,47 +1,18 @@
 <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{settings.accountKey}}"></script>
 <script>
   window.addEventListener('load', function() {
+    function parseValuesToInt(arr) {
+      return (arr || []).map(function(value) {
+        var intValue = parseInt(value);
+        return !isNaN(intValue) ? intValue : value;
+      })
+    }
+
     var urlPath = document.URL
     var titlePathPreffix = window.decodeURIComponent('{{ settings.titlePreffix }}')
     var titleEl = document.querySelector('head > title')
     var titlePath = titlePathPreffix + (titleEl ? titleEl.innerText : '')
     var curLocale = document.querySelector('html').lang
-
-    function parseValuesToInt(arr = []) {
-      return arr.map(function(value) {
-        var intValue = parseInt(value)
-        if (!isNaN(intValue)) {
-          return intValue
-        }
-        return value
-      })
-    }
-
-    zE(function () {
-      $zopim(function() {
-        zE('webWidget', 'setLocale', curLocale)
-        $zopim.livechat.sendVisitorPath({
-          url: urlPath,
-          title: titlePath
-        })
-      })
-
-      if (window.__RENDER_8_SESSION__ && window.__RENDER_8_SESSION__.sessionPromise) {
-        window.__RENDER_8_SESSION__.sessionPromise.then(function (session) {
-          var userEmail = window.R.path(['response', 'namespaces', 'profile', 'email', 'value'], session) || ''
-          var firstName = window.R.path(['response', 'namespaces', 'profile', 'firstName', 'value'], session) || ''
-          var lastName = window.R.path(['response', 'namespaces', 'profile', 'lastName', 'value'], session) || ''
-          var userName = (firstName ? firstName + ' ' : '') + lastName
-          if (userEmail || userName) {
-            zE.identify({
-              name: userName,
-              email: userEmail
-            })
-          }
-        })
-
-      }
-    })
 
     var analytics = window.decodeURIComponent('{{ settings.analytics }}') === 'true'
     window.zESettings = window.zESettings || {}
@@ -49,16 +20,15 @@
 
     try {
       webWidget = JSON.parse(window.decodeURIComponent('{{ settings.webWidget }}'))
-    } catch(e) {
-      return
-    }
+    } catch(e) { return; }
 
-    var helpCenterSuppress =  webWidget.helpCenter.suppress
+    var helpCenterSuppress = webWidget.helpCenter.suppress
     var departments = webWidget.chat.departments
     var color = webWidget.color
     var enabled = parseValuesToInt(departments.enabled)
     var select = isNaN(parseInt(departments.select)) ? departments.select : parseInt(departments.select)
     var tags = departments.tags
+
     window.zESettings.webWidget = {
       color: {
         theme: color.theme
@@ -74,5 +44,41 @@
         }
       }
     }
-})
+
+    zE(function () {
+      $zopim(function() {
+        zE('webWidget', 'setLocale', curLocale)
+        $zopim.livechat.sendVisitorPath({
+          url: urlPath,
+          title: titlePath
+        })
+
+        if (enabled && enabled.length === 1 && select) {
+          $zopim.livechat.setOnConnected(function () {
+            $zopim.livechat.setOnStatus(function () {
+              var department_status = $zopim.livechat.departments.getDepartment(select);
+              if (department_status.status == "offline") {
+                $zopim.livechat.setStatus("offline");
+              }
+            });
+          });
+        }
+      })
+
+      if (window.__RENDER_8_SESSION__ && window.__RENDER_8_SESSION__.sessionPromise) {
+        window.__RENDER_8_SESSION__.sessionPromise.then(function (session) {
+          var userEmail = window.R.path(['response', 'namespaces', 'profile', 'email', 'value'], session) || ''
+          var firstName = window.R.path(['response', 'namespaces', 'profile', 'firstName', 'value'], session) || ''
+          var lastName = window.R.path(['response', 'namespaces', 'profile', 'lastName', 'value'], session) || ''
+          var userName = (firstName ? firstName + ' ' : '') + lastName
+          if (userEmail || userName) {
+            zE.identify({
+              name: userName,
+              email: userEmail
+            })
+          }
+        })
+      }
+    })
+  });
 </script>
