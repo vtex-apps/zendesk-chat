@@ -3,14 +3,14 @@
   "name": "zendesk-chat",
   "version": "1.2.4",
   "title": "Zendesk Chat",
-  "description": "Zendesk Chat",
+  "description": "Start using Zendesk chat with just a few clicks.",
   "builders": {
     "pixel": "0.x",
     "docs": "0.x"
   },
   "mustUpdateAt": "2019-10-01",
   "billingOptions": {
-    "termsURL": "",
+    "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
     "support": {
       "url": "https://support.vtex.com/hc/requests"
     },
