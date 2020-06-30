@@ -35,7 +35,7 @@
       },
       "analytics": {
         "title": "Analytics",
-        "description": "Specifies whethe to enable or disable Google Analytics tracking",
+        "description": "Specifies whether to enable or disable Google Analytics tracking",
         "type": "boolean"
       },
       "webWidget": {
@@ -49,7 +49,7 @@
             "properties": {
               "theme": {
                 "title": "Theme color",
-                "description": "This prop may be used as a base, determining the overral color scheme of the widget",
+                "description": "This prop may be used as a base, determining the overall color scheme of the widget",
                 "type": "string"
               }
             }
