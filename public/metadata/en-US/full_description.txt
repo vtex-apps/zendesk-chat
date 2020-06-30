@@ -15,10 +15,10 @@ Live chat and messaging create a personal connection with customers looking for 
 
 ## How to set up
 
-1 - Install the app from VTEX App Store;
-2 - Fill in the settings. You will need the Account Key for your Zendesk Chat account;
-3 - Save your changes;
-4 - Manage the chat via the Zendesk platform.
+1. Install the app from VTEX App Store;
+2. Fill in the settings. You will need the Account Key for your Zendesk Chat account;
+3. Save your changes;
+4. Manage the chat via the Zendesk platform.
 
 ## Comments
 

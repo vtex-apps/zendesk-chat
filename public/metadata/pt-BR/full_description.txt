@@ -15,10 +15,10 @@ O chat e as mensagens em tempo real criam uma conexão pessoal com os clientes q
 
 ## Como configurar
 
-1 - Instale o aplicativo da VTEX App Store;
-2 - Preencha as configurações. Você precisará da Account Key da sua conta do Zendesk Chat;
-3 - Salve as alterações;
-4 - Gerencie o bate-papo através da plataforma Zendesk.
+1. Instale o aplicativo da VTEX App Store;
+2. Preencha as configurações. Você precisará da Account Key da sua conta do Zendesk Chat;
+3. Salve as alterações;
+4. Gerencie o bate-papo através da plataforma Zendesk.
 
 ## Comentários
 

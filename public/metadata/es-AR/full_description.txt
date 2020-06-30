@@ -11,14 +11,14 @@ El chat y la mensajería en tiempo real crean una conexión personal con los cli
 - Modo offline;
 - Creación de protocolos de chat;
 - Seguimiento y análisis en tiempo real;
-- Internacionalización. 
+- Internacionalización.
 
 ## Cómo configurar
 
-1 - Instala la aplicación desde VTEX App Store;
-2 - Complete la configuración. Necesitará la Account Key para su cuenta de Zendesk Chat;
-3 - Guarde sus cambios;
-4 - Administre el chat a través de la plataforma Zendesk.
+1. Instala la aplicación desde VTEX App Store;
+2. Complete la configuración. Necesitará la Account Key para su cuenta de Zendesk Chat;
+3. Guarde sus cambios;
+4. Administre el chat a través de la plataforma Zendesk.
 
 ## Comentarios
 
