@@ -14,3 +14,8 @@ You can find your Account Key going to Settings > Widget
 
 The key in this case would be:
 > xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+
+**Upcoming documentation:**
+
+ - [Add billingOptions type and availableCountries](https://github.com/vtex-apps/zendesk-chat/pull/11)
