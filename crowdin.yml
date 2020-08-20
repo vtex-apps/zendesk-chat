@@ -1,0 +1,10 @@
+---
+files:
+  -
+    source: "zendesk-chat/public/metadata/messages/pt-BR.json"
+    translation: "zendesk-chat/public/metadata/messages/%locale%.json"
+    type: "json"
+  -
+    source: "zendesk-chat/public/metadata/licenses/pt-BR.md"
+    translation: "zendesk-chat/public/metadata/licenses/%locale%.md"
+    type: "md"

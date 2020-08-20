@@ -1,0 +1,20 @@
+{
+  "name": "Zendesk Chat",
+  "headline": "Comece a usar o bate-papo do Zendesk com apenas alguns cliques.",
+  "overview": "O chat e as mensagens em tempo real criam uma conexão pessoal com os clientes que buscam suporte. Eles são maneiras rápidas e eficazes de oferecer ajuda sem interromper a experiência dos clientes.",
+  "features": [
+    "Personalização da aparência",
+    "Bate-papo com os clientes",
+    "Uso de mensagens instantâneas",
+    "Bate-papos e gatilhos proativos",
+    "Modo offline",
+    "Criação de protocolos de bate-papo",
+    "Acompanhamento e análise em tempo real",
+    "Internacionalização"
+  ],
+  "additionalInformation": "Para utilizar o chat é preciso ter uma conta ativa do Zendesk. Algumas funcionalidades só estão disponíveis para planos específicos.",
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://support.vtex.com/hc/requests"
+  }
+}
