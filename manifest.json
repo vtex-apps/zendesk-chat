@@ -16,9 +16,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "dependencies": {
     "vtex.pixel-interfaces": "1.x"
@@ -28,8 +26,8 @@
     "type": "object",
     "properties": {
       "titlePreffix": {
-        "title": "Title preffix",
-        "description": "Preffix to add to the title of the widget",
+        "title": "Title prefix",
+        "description": "Prefix to add to the title of the widget",
         "type": "string"
       },
       "accountKey": {
