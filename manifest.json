@@ -21,7 +21,8 @@
     ]
   },
   "dependencies": {
-    "vtex.pixel-interfaces": "1.x"
+    "vtex.pixel-interfaces": "1.x",
+    "vtex.zendesk-chat": "1.x"
   },
   "settingsSchema": {
     "title": "Zendesk Chat",
@@ -47,14 +48,44 @@
         "description": "",
         "type": "object",
         "properties": {
-          "color": {
-            "title": "Color",
+          "theme": {
+            "title": "Theme",
             "type": "object",
+            "description": "Configurations for the zendesk button.",
             "properties": {
               "theme": {
-                "title": "Theme color",
-                "description": "This prop may be used as a base, determining the overall color scheme of the widget",
+                "title": "General theme color",
+                "description": "This prop may be used as a base, determining the overall color scheme of the widget. Use hex format i.e #FFFFFF.",
                 "type": "string"
+              },
+              "launcherLabel": {
+                "title": "Launcher label",
+                "description": "Label of the starting launcher button.",
+                "type": "string"
+              },
+              "launcherColor": {
+                "title": "Launcher color",
+                "description": "Defines the chat button background color. Use hex format i.e #FFFFFF.",
+                "type": "string"
+              },
+              "launcherTextColor": {
+                "title": "Launcher text color",
+                "description": "Defines the chat button text color. Use hex format i.e #000000.",
+                "type": "string"
+              },
+              "launcherPosition": {
+                "title": "Launcher position",
+                "description": "Defines the horizontal position of the chat button.",
+                "type": "string",
+                "default": "right",
+                "enum": [
+                  "left",
+                  "right"
+                ],
+                "enumNames": [
+                  "Bottom left",
+                  "Bottom right"
+                ]
               }
             }
           },

@@ -1,6 +1,15 @@
 <script>
   ;(function() {
-    var btn = document.createElement('button')
+    var fakeBtn
+
+    var widgetSettings = JSON.parse(
+      decodeURIComponent('{{ settings.webWidget }}')
+    )
+    var btnLabel = widgetSettings.theme.launcherLabel || 'Chat'
+    var btnBgColor = widgetSettings.theme.launcherColor
+    var btnTextColor = widgetSettings.theme.launcherTextColor
+    var btnPosition = widgetSettings.theme.launcherPosition || 'right'
+    var chatTheme = widgetSettings.theme.theme
 
     function parseValuesToInt(arr) {
       if (!arr) return []
@@ -78,42 +87,45 @@
       window.zESettings = window.zESettings || {}
       window.zESettings.analytics = analytics
 
-      try {
-        webWidget = JSON.parse(decodeURI('{{ settings.webWidget }}'))
-      } catch (e) {
-        return
-      }
-
-      var helpCenterSuppress = webWidget.helpCenter.suppress
-      var departments = webWidget.chat.departments
-      var color = webWidget.color
+      var helpCenterSuppress = widgetSettings.helpCenter.suppress
+      var departments = widgetSettings.chat.departments
       var enabled = parseValuesToInt(departments.enabled)
       var select = isNaN(parseInt(departments.select))
         ? departments.select
         : parseInt(departments.select)
       var tags = departments.tags
 
-      window.zESettings.webWidget = {
-        color: {
-          theme: color.theme,
-        },
-        helpCenter: {
-          suppress: helpCenterSuppress,
-        },
-        chat: {
-          departments: {
-            enabled: enabled,
-            select: select,
-            tags: tags,
+      zE('webWidget', 'updateSettings', {
+        webWidget: {
+          color: {
+            theme: chatTheme,
+            launcher: btnBgColor,
+            launcherText: btnTextColor,
+          },
+          position: { horizontal: btnPosition, vertical: 'bottom' },
+          launcher: {
+            chatLabel: {
+              '*': btnLabel,
+            },
+          },
+          helpCenter: {
+            suppress: helpCenterSuppress,
+          },
+          chat: {
+            departments: {
+              enabled: enabled,
+              select: select,
+              tags: tags,
+            },
           },
         },
-      }
+      })
     }
 
     function addZDSnippet() {
       var script = document.createElement('script')
 
-      btn.disabled = true
+      if (fakeBtn) fakeBtn.disabled = true
 
       script.id = 'ze-snippet'
       script.async = 'async'
@@ -132,12 +144,64 @@
 
             zE.activate()
 
-            document.body.removeChild(btn)
+            document.body.removeChild(fakeBtn)
           }
         }, 400)
       }
 
       document.head.appendChild(script)
+    }
+
+    function addFakeButton() {
+      fakeBtn = document.createElement('button')
+
+      fakeBtn.id = 'zendesk-fake-btn'
+      fakeBtn.innerHTML =
+        '<svg id="zendesk-fake-icon" x="0" y="0" viewBox="0 0 15 16" xml:space="preserve" aria-hidden="true"><path d="M1.3,16c-0.7,0-1.1-0.3-1.2-0.8c-0.3-0.8,0.5-1.3,0.8-1.5c0.6-0.4,0.9-0.7,1-1c0-0.2-0.1-0.4-0.3-0.7c0,0,0-0.1-0.1-0.1 C0.5,10.6,0,9,0,7.4C0,3.3,3.4,0,7.5,0C11.6,0,15,3.3,15,7.4s-3.4,7.4-7.5,7.4c-0.5,0-1-0.1-1.5-0.2C3.4,15.9,1.5,16,1.5,16 C1.4,16,1.4,16,1.3,16z M3.3,10.9c0.5,0.7,0.7,1.5,0.6,2.2c0,0.1-0.1,0.3-0.1,0.4c0.5-0.2,1-0.4,1.6-0.7c0.2-0.1,0.4-0.2,0.6-0.1 c0,0,0.1,0,0.1,0c0.4,0.1,0.9,0.2,1.4,0.2c3,0,5.5-2.4,5.5-5.4S10.5,2,7.5,2C4.5,2,2,4.4,2,7.4c0,1.2,0.4,2.4,1.2,3.3 C3.2,10.8,3.3,10.8,3.3,10.9z"></path></svg><span>' +
+        btnLabel +
+        '</span>'
+
+      fakeBtn.className =
+        'b br-pill pointer c-on-base--inverted white-90 flex items-center justify-center'
+
+      fakeBtn.style = [
+        btnTextColor && 'color: ' + btnTextColor,
+        btnBgColor && 'background-color: ' + btnBgColor,
+      ]
+        .filter(Boolean)
+        .join(';')
+
+      fakeBtn.addEventListener('click', function() {
+        localStorage.setItem('zdChatOpen', true)
+        addZDSnippet()
+      })
+
+      document.head.insertAdjacentHTML(
+        'beforeend',
+        // todo: use template strings when the builder transforms it into simple strings
+        [
+          '<style>',
+          '#zendesk-fake-icon {',
+          'padding-right: 0.57143rem;',
+          'fill: currentColor;',
+          'width: 1.42rem;',
+          'height: 1.42rem;',
+          '}',
+          '#zendesk-fake-btn {',
+          'position: fixed;',
+          btnPosition + ': 20px;',
+          'bottom: 10px;',
+          'width: 109px;',
+          'height: 50px;',
+          'opacity: 1;',
+          'border: 0px;',
+          'z-index: 999998;',
+          '-webkit-appearance: none;',
+          '}</style>',
+        ].join('')
+      )
+
+      document.body.appendChild(fakeBtn)
     }
 
     function shouldOpenChat() {
@@ -154,19 +218,7 @@
       if (shouldOpenChat()) {
         addZDSnippet()
       } else {
-        btn.id = 'zendesk-fake-btn'
-        btn.innerHTML =
-          '<svg id="zendesk-fake-icon" x="0" y="0" viewBox="0 0 15 16" xml:space="preserve" aria-hidden="true"><path d="M1.3,16c-0.7,0-1.1-0.3-1.2-0.8c-0.3-0.8,0.5-1.3,0.8-1.5c0.6-0.4,0.9-0.7,1-1c0-0.2-0.1-0.4-0.3-0.7c0,0,0-0.1-0.1-0.1 C0.5,10.6,0,9,0,7.4C0,3.3,3.4,0,7.5,0C11.6,0,15,3.3,15,7.4s-3.4,7.4-7.5,7.4c-0.5,0-1-0.1-1.5-0.2C3.4,15.9,1.5,16,1.5,16 C1.4,16,1.4,16,1.3,16z M3.3,10.9c0.5,0.7,0.7,1.5,0.6,2.2c0,0.1-0.1,0.3-0.1,0.4c0.5-0.2,1-0.4,1.6-0.7c0.2-0.1,0.4-0.2,0.6-0.1 c0,0,0.1,0,0.1,0c0.4,0.1,0.9,0.2,1.4,0.2c3,0,5.5-2.4,5.5-5.4S10.5,2,7.5,2C4.5,2,2,4.4,2,7.4c0,1.2,0.4,2.4,1.2,3.3 C3.2,10.8,3.3,10.8,3.3,10.9z"></path></svg><span>Chat</span>'
-
-        btn.className =
-          'b br-pill pointer bg-base--inverted white-90 flex items-center justify-center'
-
-        btn.addEventListener('click', function() {
-          localStorage.setItem('zdChatOpen', true)
-          addZDSnippet()
-        })
-
-        document.body.appendChild(btn)
+        addFakeButton()
       }
     })
 
@@ -181,24 +233,3 @@
     )
   })()
 </script>
-
-<style>
-  #zendesk-fake-icon {
-    padding-right: 0.57143rem;
-    fill: currentColor;
-    width: 1.42rem;
-    height: 1.42rem;
-  }
-
-  #zendesk-fake-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 10px;
-    width: 109px;
-    height: 50px;
-    opacity: 1;
-    border: 0px;
-    z-index: 999998;
-    -webkit-appearance: none;
-  }
-</style>
