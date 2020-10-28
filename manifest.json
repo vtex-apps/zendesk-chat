@@ -27,6 +27,7 @@
   "settingsSchema": {
     "title": "Zendesk Chat",
     "type": "object",
+    "required": ["accountKey"],
     "properties": {
       "titlePreffix": {
         "title": "Title prefix",
@@ -47,6 +48,7 @@
         "title": "Web Widget",
         "description": "",
         "type": "object",
+
         "properties": {
           "theme": {
             "title": "Theme",

@@ -14,7 +14,6 @@
     "react-intl": "^3.11.0",
     "typescript": "3.9.7",
     "vtex.pixel-interfaces": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-interfaces@1.1.1/public/_types/react",
-    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.124.2/public/@types/vtex.render-runtime",
-    "vtex.zendesk-chat": "https://kiwi--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.zendesk-chat@1.3.2+build1603896317/public/_types/react"
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.124.2/public/@types/vtex.render-runtime"
   }
 }
