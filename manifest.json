@@ -5,8 +5,10 @@
   "title": "Zendesk Chat",
   "description": "Start using Zendesk chat with just a few clicks.",
   "builders": {
+    "store": "0.x",
     "pixel": "0.x",
-    "docs": "0.x"
+    "docs": "0.x",
+    "react": "3.x"
   },
   "mustUpdateAt": "2019-10-01",
   "billingOptions": {
@@ -16,16 +18,16 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "dependencies": {
-    "vtex.pixel-interfaces": "1.x"
+    "vtex.pixel-interfaces": "1.x",
+    "vtex.render-runtime": "8.x"
   },
   "settingsSchema": {
     "title": "Zendesk Chat",
     "type": "object",
+    "required": ["accountKey"],
     "properties": {
       "titlePreffix": {
         "title": "Title prefix",
@@ -47,14 +49,44 @@
         "description": "",
         "type": "object",
         "properties": {
-          "color": {
-            "title": "Color",
+          "theme": {
+            "title": "Theme",
             "type": "object",
+            "description": "Configurations for the Zendesk chat button. This overwrites any configuration made directly from the Zendesk dashboard.",
             "properties": {
               "theme": {
-                "title": "Theme color",
-                "description": "This prop may be used as a base, determining the overall color scheme of the widget",
+                "title": "General theme color",
+                "description": "This prop may be used as a base, determining the overall color scheme of the widget. Use hex format i.e #FFFFFF.",
                 "type": "string"
+              },
+              "launcherLabel": {
+                "title": "Launcher label",
+                "description": "Label of the starting launcher button.",
+                "type": "string"
+              },
+              "launcherColor": {
+                "title": "Launcher color",
+                "description": "Defines the chat button background color. Use hex format i.e #FFFFFF.",
+                "type": "string"
+              },
+              "launcherTextColor": {
+                "title": "Launcher text color",
+                "description": "Defines the chat button text color. Use hex format i.e #000000.",
+                "type": "string"
+              },
+              "launcherPosition": {
+                "title": "Launcher position",
+                "description": "Defines the horizontal position of the chat button.",
+                "type": "string",
+                "default": "right",
+                "enum": ["left", "right"],
+                "enumNames": ["Bottom left", "Bottom right"]
+              },
+              "widgetZindex": {
+                "title": "Launcher z-index",
+                "description": "Defines the z-index of the chat button.",
+                "type": "string",
+                "default": "999998"
               }
             }
           },
