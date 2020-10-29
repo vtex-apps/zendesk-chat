@@ -34,19 +34,14 @@ declare global {
       accountKey: string
     }
 
-    zESettings: Record<string, unknown>
+    zESettings: ZendeskSettings
+    zE: ZendeskWidget
 
     $zopim: {
       (arg: Function): unknown
       livechat: {
         sendVisitorPath: Function
       }
-    }
-
-    zE: {
-      (...args: unknown[]): unknown
-      identify: (...args) => unknown
-      activate: (...args) => unknown
     }
   }
 }

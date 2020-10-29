@@ -48,12 +48,11 @@
         "title": "Web Widget",
         "description": "",
         "type": "object",
-
         "properties": {
           "theme": {
             "title": "Theme",
             "type": "object",
-            "description": "Configurations for the zendesk button.",
+            "description": "Configurations for the Zendesk chat button. This overwrites any configuration made directly from the Zendesk dashboard.",
             "properties": {
               "theme": {
                 "title": "General theme color",
