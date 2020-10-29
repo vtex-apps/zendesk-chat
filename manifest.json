@@ -81,6 +81,12 @@
                 "default": "right",
                 "enum": ["left", "right"],
                 "enumNames": ["Bottom left", "Bottom right"]
+              },
+              "widgetZindex": {
+                "title": "Launcher z-index",
+                "description": "Defines the z-index of the chat button.",
+                "type": "string",
+                "default": "999998"
               }
             }
           },

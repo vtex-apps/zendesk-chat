@@ -73,6 +73,7 @@ function bootstrap() {
   const btnTextColor = widgetSettings.theme.launcherTextColor
   const btnPosition = widgetSettings.theme.launcherPosition || 'right'
   const chatTheme = widgetSettings.theme.theme
+  const widgetZindex = widgetSettings.theme.widgetZindex || '999998'
 
   function configureSnippetForVTEX() {
     window.zESettings = window.zESettings || {}
@@ -118,6 +119,7 @@ function bootstrap() {
           launcherText: btnTextColor,
         },
         position: { horizontal: btnPosition, vertical: 'bottom' },
+        zIndex: widgetZindex,
         launcher: {
           label: { '*': btnLabel },
           chatLabel: { '*': btnLabel },
@@ -199,7 +201,7 @@ function bootstrap() {
           height: 50px;
           opacity: 1;
           border: 0px;
-          z-index: 999998;
+          z-index: ${widgetZindex};
           -webkit-appearance: none;
       }</style>`
     )

@@ -17,6 +17,7 @@ declare global {
           launcherTextColor: string
           launcherPosition: string
           theme: string
+          widgetZindex: string
         }
         helpCenter: {
           suppress: unknown
