@@ -68,6 +68,8 @@ function bootstrap() {
     accountKey = null,
   } = window.__zendeskPixel
 
+  const IS_MOBILE = window.__RUNTIME__.hints.mobile
+
   const btnLabel = widgetSettings.theme.launcherLabel || 'Chat'
   const btnBgColor = widgetSettings.theme.launcherColor
   const btnTextColor = widgetSettings.theme.launcherTextColor
@@ -187,23 +189,29 @@ function bootstrap() {
     document.head.insertAdjacentHTML(
       'beforeend',
       `<style>
-        #zendesk-fake-icon {
-          padding-right: 0.57143rem;
-          fill: currentColor;
-          width: 1.42rem;
-          height: 1.42rem;
-        }
         #zendesk-fake-btn {
           position: fixed;
-          ${btnPosition}: 20px;
-          bottom: 10px;
-          width: 109px;
-          height: 50px;
+          ${btnPosition}: 0;
+          bottom: 0;
+          margin: 15px 20px;
+          ${IS_MOBILE ? 'padding: .9em;' : 'padding: .9em 1.5em;'}
           opacity: 1;
           border: 0px;
           z-index: ${widgetZindex};
+          font-size: 15px;
           -webkit-appearance: none;
-      }</style>`
+        }
+        #zendesk-fake-icon {
+          ${!IS_MOBILE ? 'padding-right: 0.57143em;' : ''}
+          fill: currentColor;
+          width: 1.42em;
+          height: 1.42em;
+        }
+        #zendesk-fake-btn span {
+          font-size: 1.1em;
+          ${IS_MOBILE ? `display: none;` : ''}
+        }
+      </style>`
     )
 
     document.body.appendChild(fakeBtn)
