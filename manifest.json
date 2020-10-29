@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "zendesk-chat",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "title": "Zendesk Chat",
   "description": "Start using Zendesk chat with just a few clicks.",
   "builders": {
@@ -18,7 +18,9 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "dependencies": {
     "vtex.pixel-interfaces": "1.x",
@@ -27,7 +29,9 @@
   "settingsSchema": {
     "title": "Zendesk Chat",
     "type": "object",
-    "required": ["accountKey"],
+    "required": [
+      "accountKey"
+    ],
     "properties": {
       "titlePreffix": {
         "title": "Title prefix",
@@ -79,8 +83,14 @@
                 "description": "Defines the horizontal position of the chat button.",
                 "type": "string",
                 "default": "right",
-                "enum": ["left", "right"],
-                "enumNames": ["Bottom left", "Bottom right"]
+                "enum": [
+                  "left",
+                  "right"
+                ],
+                "enumNames": [
+                  "Bottom left",
+                  "Bottom right"
+                ]
               },
               "widgetZindex": {
                 "title": "Launcher z-index",
