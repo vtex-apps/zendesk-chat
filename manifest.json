@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "zendesk-chat",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "title": "Zendesk Chat",
   "description": "Start using Zendesk chat with just a few clicks.",
   "builders": {
