@@ -70,12 +70,12 @@ function bootstrap() {
 
   const IS_MOBILE = window.__RUNTIME__.hints.mobile
 
-  const btnLabel = widgetSettings.theme.launcherLabel || 'Chat'
-  const btnBgColor = widgetSettings.theme.launcherColor
-  const btnTextColor = widgetSettings.theme.launcherTextColor
-  const btnPosition = widgetSettings.theme.launcherPosition || 'right'
-  const chatTheme = widgetSettings.theme.theme
-  const widgetZindex = widgetSettings.theme.widgetZindex || '999998'
+  const chatTheme = widgetSettings.theme?.theme || widgetSettings.color?.theme
+  const btnLabel = widgetSettings.theme?.launcherLabel || 'Chat'
+  const btnBgColor = widgetSettings.theme?.launcherColor || chatTheme
+  const btnTextColor = widgetSettings.theme?.launcherTextColor
+  const btnPosition = widgetSettings.theme?.launcherPosition || 'right'
+  const widgetZindex = widgetSettings.theme?.widgetZindex || '999998'
 
   function configureSnippetForVTEX() {
     window.zESettings = window.zESettings || {}
