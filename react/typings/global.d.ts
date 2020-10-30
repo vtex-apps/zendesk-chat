@@ -15,6 +15,10 @@ declare global {
 
     __zendeskPixel: {
       widget: {
+        // @deprecated. Use `theme`
+        color?: {
+          theme: string
+        }
         theme: {
           launcherLabel: string
           launcherColor: string
