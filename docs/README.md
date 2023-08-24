@@ -17,4 +17,4 @@ To use the chat you need to have an active [Zendesk](https://zendesk.com/) accou
    ```html
    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx> </script>
    ```
-   The key in this case would be `xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
+> Replace the key value, i.e. `xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, according to your scenario.
