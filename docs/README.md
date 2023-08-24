@@ -9,7 +9,7 @@ To use the chat you need to have an active [Zendesk](https://zendesk.com/) accou
 ## Installation
 
 1. Open the VTEX App Store and install the [Zendesk Chat](https://apps.vtex.com/vtex-zendesk-chat/p) app on your store.
-2. On VTEX Admin, go to **Extensions Hub > App Management** and click on the Zendesk Chat app settings.
+2. On VTEX Admin, go to **Extensions Hub > App Management** and click the Zendesk Chat app settings.
 3. Fill in your Zendesk Chat's Account Key, which you can find on Zendesk following [these instructions](https://support.zendesk.com/hc/en-us/articles/4408825772698-How-do-I-find-my-Chat-Account-Key-).
 4. Click `Save`.
 5. Copy the following script and insert it into your website's HTML source code between the `<head>` tags. This code must be inserted into every page where you want to display the Web Widget.
